@@ -3,8 +3,12 @@ import numpy as np
 from dqn_agent import DQNAgent
 from utils import plot_learning_curve, make_env
 from gym import wrappers
+import time
+
 
 if __name__ == '__main__':
+    start = time.time()
+    print("start timer...")
     env = make_env('PongNoFrameskip-v4')
     #env = gym.make('CartPole-v1')
     best_score = -np.inf
@@ -26,8 +30,8 @@ if __name__ == '__main__':
     figure_file = 'plots/' + fname + '.png'
     # if you want to record video of your agent playing, do a mkdir tmp && mkdir tmp/dqn-video
     # and uncomment the following 2 lines.
-    #env = wrappers.Monitor(env, "tmp/dqn-video",
-    #                    video_callable=lambda episode_id: True, force=True)
+    env = wrappers.Monitor(env, "tmp/dqn-video",
+                        video_callable=lambda episode_id: True, force=True)
     n_steps = 0
     scores, eps_history, steps_array = [], [], []
 
@@ -64,3 +68,8 @@ if __name__ == '__main__':
 
     x = [i+1 for i in range(len(scores))]
     plot_learning_curve(steps_array, scores, eps_history, figure_file)
+    
+    end = time.time()
+    print(time.strftime('%H:%M:%S', time.gmtime((end - start))))
+
+
