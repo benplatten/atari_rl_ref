@@ -70,6 +70,6 @@ if __name__ == '__main__':
     plot_learning_curve(steps_array, scores, eps_history, figure_file)
     
     end = time.time()
-    print(time.strftime('%H:%M:%S', time.gmtime((end - start))))
+    print(f"Total runtime: {time.strftime('%H:%M:%S', time.gmtime((end - start)))}")
 
 
